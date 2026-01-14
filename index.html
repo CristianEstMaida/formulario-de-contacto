@@ -53,19 +53,45 @@
       </div>
     </form>
   </div>
+<script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("CYS0VPBDEotYw_zMW"); // reemplazá con tu public key
+  })();
+</script>
 
   <script>
     document.getElementById("formulario").addEventListener("submit", function(e) {
       e.preventDefault(); // Evita recarga
-      Swal.fire({
-        title: "Mensaje enviado",
-        text: "Gracias por contactarte. Te responderemos pronto.",
-        icon: "success",
-        confirmButtonText: "Cerrar"
+      // Datos del formulario
+    const datos = {
+      nombre: document.getElementById("nombre").value,
+      email: document.getElementById("email").value,
+      mensaje: document.getElementById("mensaje").value
+    };
+
+    // Enviar con EmailJS
+    emailjs.send("service_ceduu8q", "template_vwi1j3c", datos)
+      .then(() => {
+        Swal.fire({
+          title: "Mensaje enviado",
+          text: "Gracias por contactarte. Te responderemos pronto.",
+          icon: "success",
+          confirmButtonText: "Cerrar"
+        });
+        this.reset();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        Swal.fire({
+          title: "Error",
+          text: "No se pudo enviar el mensaje.",
+          icon: "error"
+        });
       });
-      this.reset(); // Limpia el formulario
     });
   </script>
 
 </body>
+
 </html>
