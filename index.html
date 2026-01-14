@@ -67,6 +67,8 @@
       // Datos del formulario
       const datos = {
         to_name: "Administrador", // o el nombre fijo del receptor
+        to_email: "grupocristianbongiovi@gmail.com", // destinatario fijo
+        reply_to: document.getElementById("email").value,
         from_name: document.getElementById("nombre").value,
         from_email: document.getElementById("email").value,
         message: document.getElementById("mensaje").value
@@ -97,5 +99,6 @@
 </body>
 
 </html>
+
 
 
